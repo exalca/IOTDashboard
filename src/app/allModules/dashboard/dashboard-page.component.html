@@ -1,0 +1,227 @@
+<div id="dashboard-project" class="page-layout simple right-sidebar" fxLayout="row">
+  <div class="center" fusePerfectScrollbar>
+    <div class="content">
+      <div class="widget-group p-12" fxLayout="row wrap" fxFlex="100" *fuseIfOnDom [@animateStagger]="{value:'50'}">
+
+        <div class="widget" fxFlex="100" fxFlex.gt-sm="25">
+          <div class="fuse-card auto-width mb-16 dashboardCard1" [ngClass.gt-sm]="'mb-0 mr-20'">
+            <div class="p-16 pb-0" fxLayout="row wrap"  fxLayoutAlign="start end">
+              <div class="pr-16">
+                <div class="h4">On Job</div>
+                <div class="font-size-54 font-weight-300 line-height-1 mt-8">
+                  {{widgets.widget1.conversion.value}}%
+                </div>
+              </div>
+              <div class="pr-4">
+                <div class="h5 text-italic text-nowrap">
+                  Today : {{widgets.widget1.conversion.ofTarget}}%
+                </div>
+                <div class="h5 text-italic text-nowrap">
+                  This Week : {{widgets.widget1.conversion.ofTarget}}%
+                </div>
+                <div class="h5 text-italic text-nowrap">
+                  Last Week : {{widgets.widget1.conversion.ofTarget}}%
+                </div>
+              </div>
+            </div>
+            <div fxLayout="row wrap">
+              <div class="h-96 w-30-p" style="margin-right: auto">
+                <ngx-charts-pie-chart *fuseIfOnDom [scheme]="widget1.scheme" [results]="widgets.widget1.mainChart"
+                  [legend]="widget1.legend" [explodeSlices]="widget1.explodeSlices" [labels]="widget1.labels"
+                  [doughnut]="widget1.doughnut" [gradient]="widget1.gradient" (select)="widget1.onSelect($event)">
+                </ngx-charts-pie-chart>
+              </div>
+              <div class="h-96 w-30-p" style="margin-right: auto">
+                <ngx-charts-pie-chart *fuseIfOnDom [scheme]="widget2.scheme" [results]="widgets.widget2.mainChart"
+                  [legend]="widget2.legend" [explodeSlices]="widget2.explodeSlices" [labels]="widget2.labels"
+                  [doughnut]="widget2.doughnut" [gradient]="widget2.gradient" (select)="widget2.onSelect($event)">
+                </ngx-charts-pie-chart>
+              </div>
+              <div class="h-96 w-30-p" style="margin-right: auto">
+                <ngx-charts-pie-chart *fuseIfOnDom [scheme]="widget3.scheme" [results]="widgets.widget3.mainChart"
+                  [legend]="widget3.legend" [explodeSlices]="widget3.explodeSlices" [labels]="widget3.labels"
+                  [doughnut]="widget3.doughnut" [gradient]="widget3.gradient" (select)="widget3.onSelect($event)">
+                </ngx-charts-pie-chart>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="widget" fxFlex="100" fxFlex.gt-sm="25">
+          <div class="fuse-card auto-width mb-16 dashboardCard2" [ngClass.gt-sm]="'mb-0 mr-20'">
+            <div class="p-16 pb-0" fxLayout="row wrap" fxLayoutAlign="start end">
+              <div class="pr-16">
+                <div class="h4">OFF Status</div>
+                <div class="font-size-54 font-weight-300 line-height-1 mt-8">
+                  {{widgets.widget4.impressions.value}}%
+                </div>
+              </div>
+              <div class="pr-4">
+                <div class="h5 text-italic">
+                  Barriers : {{widgets.widget1.conversion.ofTarget}}%
+                </div>
+                <div class="h5 text-italic text-nowrap">
+                  Taking : {{widgets.widget1.conversion.ofTarget}}%
+                </div>
+              </div>
+            </div>
+            <div class="h-96 w-100-p">
+              <ngx-charts-bar-vertical-stacked *fuseIfOnDom [scheme]="widget4.scheme" [results]="this.widgets.widget4.mainChart[this.widget4.currentRange]"
+                [gradient]="widget4.gradient" [xAxis]="widget4.xAxis" [yAxis]="widget4.yAxis" [legend]="widget4.legend"
+                [showXAxisLabel]="widget4.showXAxisLabel" [showYAxisLabel]="widget4.showYAxisLabel" [xAxisLabel]="widget4.xAxisLabel"
+                [yAxisLabel]="widget4.yAxisLabel" (select)="widget4.onSelect($event)">
+              </ngx-charts-bar-vertical-stacked>
+            </div>
+          </div>
+        </div>
+
+        <div class="widget" fxFlex="100" fxFlex.gt-sm="25">
+          <div class="fuse-card auto-width mb-16 dashboardCard3" [ngClass.gt-sm]="'mb-0 mr-20'">
+            <div class="p-16 pb-0" fxLayout="row wrap" fxLayoutAlign="start end">
+              <div class="pr-16">
+                <div class="h4">Treatment</div>
+                <div class="font-size-54 font-weight-300 line-height-1 mt-8">
+                  {{widgets.widget5.conversion.value}}%
+                </div>
+              </div>
+              <div class="pr-4">
+                <div class="h5 text-italic text-nowrap">
+                  Barriers : {{widgets.widget5.conversion.ofTarget}}%
+                </div>
+                <div class="h5 text-italic text-nowrap">
+                  Taking : {{widgets.widget5.conversion.ofTarget}}%
+                </div>
+              </div>
+            </div>
+            <div class="h-96 w-100-p">
+              <ngx-charts-bar-vertical-stacked *fuseIfOnDom [scheme]="widget5.scheme" [results]="this.widgets.widget5.mainChart[this.widget5.currentRange]"
+                [gradient]="widget5.gradient" [xAxis]="widget5.xAxis" [yAxis]="widget5.yAxis" [legend]="widget5.legend"
+                [showXAxisLabel]="widget5.showXAxisLabel" [showYAxisLabel]="widget5.showYAxisLabel" [xAxisLabel]="widget5.xAxisLabel"
+                [yAxisLabel]="widget5.yAxisLabel" (select)="widget5.onSelect($event)">
+              </ngx-charts-bar-vertical-stacked>
+            </div>
+          </div>
+        </div>
+
+        <div class="widget" fxFlex="100" fxFlex.gt-sm="25">
+          <div class="fuse-card auto-width mb-16 dashboardCard4" [ngClass.gt-sm]="'mb-0 mr-10'">
+            <div class="p-16 pb-0" fxLayout="row wrap" fxLayoutAlign="start end">
+              <div class="pr-16">
+                <div class="h4">Exceptions</div>
+                <div class="font-size-54 font-weight-300 line-height-1 mt-8">
+                  {{widgets.widget6.conversion.value}}
+                </div>
+              </div>
+              <div class="pr-4">
+                <div class="h5 text-italic text-nowrap">
+                  Barriers : {{widgets.widget6.conversion.ofTarget}}%
+                </div>
+                <div class="h5 text-italic text-nowrap">
+                  Taking : {{widgets.widget6.conversion.ofTarget}}%
+                </div>
+              </div>
+            </div>
+            <div class="h-96 w-100-p">
+              <canvas baseChart [datasets]="widgets.widget6.datasets" [labels]="widgets.widget6.labels" [colors]="widgets.widget6.colors"
+                [options]="widgets.widget6.options" [chartType]="widgets.widget6.chartType">
+              </canvas>
+            </div>
+          </div>
+        </div>
+
+        <fuse-widget [@animate]="{value:'*',params:{y:'100%'}}" fxLayout="row" fxFlex="100" class="widget widget5">
+          <div class="fuse-widget-front mat-elevation-z2">
+            <div class="px-16 border-bottom" fxLayout="row wrap" fxLayoutAlign="space-between center">
+
+              <div fxFlex class="py-16 h3">{{widgets.widget7.title}}</div>
+
+              <div fxFlex="0 1 auto" class="py-16" fxLayout="row">
+                <button mat-button class="px-16" *ngFor="let range of widgets.widget7.ranges | keys" (click)="widget7.currentRange = range.key"
+                  [ngClass]="{'accent' : widget7.currentRange == range.key}">
+                  {{range.value}}
+                </button>
+              </div>
+            </div>
+
+            <div fxLayout="row wrap" fxLayoutAlign="start start">
+              <div class="h-420 my-16" fxLayout="row" fxFlex="100" fxFlex.gt-sm="50">
+                <!-- <div class="h-420 my-16" fxLayout="row" fxFlex="100"> -->
+                <ngx-charts-bar-vertical-stacked *fuseIfOnDom [scheme]="widget7.scheme" [results]="this.widgets.widget7.mainChart[this.widget7.currentRange]"
+                  [gradient]="widget7.gradient" [xAxis]="widget7.xAxis" [yAxis]="widget7.yAxis" [legend]="widget7.legend"
+                  [showXAxisLabel]="widget7.showXAxisLabel" [showYAxisLabel]="widget7.showYAxisLabel" [xAxisLabel]="widget7.xAxisLabel"
+                  [yAxisLabel]="widget7.yAxisLabel" (select)="widget7.onSelect($event)">
+                </ngx-charts-bar-vertical-stacked>
+              </div>
+              <div class="my-16" fxFlex="100" fxLayout="row wrap" fxFlex.gt-sm="50">
+
+                <div fxLayout="column" fxFlex="100" fxLayoutAlign="center" *ngFor="let widget of widgets.widget7.supporting | keys"
+                  class="mb-24">
+
+                  <div class="px-24">
+                    <div class="h4 secondary-text">{{widget.value.label}}</div>
+                    <div class="mat-display-1 m-0">
+                      {{widget.value.count[widget7.currentRange]}}
+                    </div>
+                  </div>
+
+                  <div class="h-64">
+                    <ngx-charts-area-chart *fuseIfOnDom [results]="widget.value.chart[widget7.currentRange]" [scheme]="widget7.supporting.scheme"
+                      [gradient]="widget7.supporting.gradient" [xAxis]="widget7.supporting.xAxis" [yAxis]="widget7.supporting.yAxis"
+                      [legend]="widget7.supporting.legend" [showXAxisLabel]="widget7.supporting.showXAxisLabel"
+                      [showYAxisLabel]="widget7.supporting.showYAxisLabel" [xAxisLabel]="widget7.supporting.xAxisLabel"
+                      [yAxisLabel]="widget7.supporting.yAxisLabel" [curve]="widget7.supporting.curve">
+                    </ngx-charts-area-chart>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </fuse-widget>
+
+        <fuse-widget [@animate]="{value:'*',params:{y:'100%'}}" class="widget p-5" fxLayout="column" fxFlex="100">
+          <div class="fuse-widget-front mat-elevation-z2">
+            <div class="h-200">
+              <ngx-charts-heat-map *fuseIfOnDom [view]="widget8.view" [scheme]="widget8.colorScheme" [results]="widgets.widget8.multi"
+                [legend]="widget8.showLegend" [gradient]="widget8.gradient" [xAxis]="widget8.showXAxis" [yAxis]="widget8.showYAxis"
+                [showXAxisLabel]="widget8.showXAxisLabel" [showYAxisLabel]="widget8.showYAxisLabel" [xAxisLabel]="widget8.xAxisLabel"
+                [yAxisLabel]="widget8.yAxisLabel" (select)="widget8.onSelect($event)">
+              </ngx-charts-heat-map>
+            </div>
+          </div>
+        </fuse-widget>
+
+        <fuse-widget [@animate]="{value:'*',params:{y:'100%'}}" class="widget" fxLayout="row" fxFlex="100">
+          <div class="fuse-widget-front mat-elevation-z2">
+            <div class="simple-table-container" ms-responsive-table>
+              <div class=" table-title">
+                {{widgets.widget9.title}}
+              </div>
+              <table class="simple">
+                <thead>
+                  <tr>
+                    <th *ngFor="let column of widgets.widget9.table.columns">
+                      {{column.title}}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let row of widgets.widget9.table.rows">
+                    <td *ngFor="let cell of row">
+                      <span class="p-4">
+                        {{cell.value}}
+                      </span>
+                      <!-- <mat-icon *ngIf="cell.icon" class="s-16">{{cell.icon}}
+                        </mat-icon> -->
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </fuse-widget>
+
+      </div>
+    </div>
+  </div>
+</div>
