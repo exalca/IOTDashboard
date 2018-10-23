@@ -1,4 +1,4 @@
-# Fuse - Angular
+# IOT Dashboard
 
 Material Design Admin Template with Angular 6+ and Angular Material
 
