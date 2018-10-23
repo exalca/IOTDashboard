@@ -52,7 +52,7 @@ export class DashboardPageComponent implements OnInit {
       doughnut: false,
       gradient: false,
       scheme: {
-        domain: ['#28a745', '#f44336']
+        domain: ['#36a565', '#ec5588']
       },
       onSelect: ev => {
         console.log(ev);
@@ -66,7 +66,7 @@ export class DashboardPageComponent implements OnInit {
       doughnut: false,
       gradient: false,
       scheme: {
-        domain: ['#28a745', '#f44336']
+        domain: ['#36a565', '#ec5588']
       },
       onSelect: ev => {
         console.log(ev);
@@ -80,7 +80,7 @@ export class DashboardPageComponent implements OnInit {
       doughnut: false,
       gradient: false,
       scheme: {
-        domain: ['#28a745', '#f44336']
+        domain: ['#36a565', '#ec5588']
       },
       onSelect: ev => {
         console.log(ev);
@@ -98,7 +98,7 @@ export class DashboardPageComponent implements OnInit {
       showYAxisLabel: false,
       yAxisLabel: 'Total active hours',
       scheme: {
-        domain: ['#28a745', '#f44336']
+        domain: ['#36a565', '#ec5588']
       },
       onSelect: ev => {
         console.log(ev);
@@ -115,7 +115,7 @@ export class DashboardPageComponent implements OnInit {
       showYAxisLabel: false,
       yAxisLabel: 'Total active hours',
       scheme: {
-        domain: ['#28a745', '#f44336']
+        domain: ['#36a565', '#ec5588']
       },
       onSelect: ev => {
         console.log(ev);
@@ -133,7 +133,7 @@ export class DashboardPageComponent implements OnInit {
       showYAxisLabel: true,
       yAxisLabel: 'Total active hours',
       scheme: {
-        domain: ['#20283E', '#DADADA']
+        domain: ['#79d1d9', '#DADADA']
       },
       onSelect: ev => {
         console.log(ev);
@@ -149,7 +149,7 @@ export class DashboardPageComponent implements OnInit {
         showYAxisLabel: false,
         yAxisLabel: 'Active hours',
         scheme: {
-          domain: ['#20283E']
+          domain: ['#79d1d9']
         },
         curve: shape.curveBasis
       }
