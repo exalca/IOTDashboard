@@ -4,6 +4,7 @@ import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { FuseTranslationLoaderService } from '@fuse/services/translation-loader.service';
 import * as shape from 'd3-shape';
 import { fuseAnimations } from '@fuse/animations/index';
+import { FuseConfigService } from '@fuse/services/config.service';
 
 export interface UserData {
   id: string;
@@ -28,19 +29,20 @@ export class SampleComponent implements OnInit {
   @ViewChild(MatSort)
   sort: MatSort;
 
-  /**
-   * Constructor
-   *
-   * @param {FuseTranslationLoaderService} _fuseTranslationLoaderService
-   */
-  constructor(
-    private _fuseTranslationLoaderService: FuseTranslationLoaderService
-  ) {
+  constructor(private _fuseConfigService: FuseConfigService) {
     // Create 100 users
     const users = Array.from({ length: 100 }, (_, k) => createNewUser(k + 1));
 
     // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource(users);
+
+    this._fuseConfigService.config = {
+      layout: {
+        toolbar: {
+          hidden: true
+        }
+      }
+    };
   }
   // tslint:disable-next-line:typedef
   ngOnInit() {

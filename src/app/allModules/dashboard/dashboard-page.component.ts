@@ -7,8 +7,8 @@ import { fuseAnimations } from '@fuse/animations';
 
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 
-import { DashboardPageService } from './dashboard-page.service';
 import { Data } from './data';
+import { FuseConfigService } from '@fuse/services/config.service';
 @Component({
   selector: 'app-dashboard-page',
   templateUrl: './dashboard-page.component.html',
@@ -32,19 +32,10 @@ export class DashboardPageComponent implements OnInit {
   view: any[] = [700, 400];
   dateNow = Date.now();
 
-  /**
-   * Constructor
-   *
-   * @param {FuseSidebarService} _fuseSidebarService
-   * @param {ProjectDashboardService} _projectDashboardService
-   */
   constructor(
-    private data: Data,
-    private _fuseSidebarService: FuseSidebarService
+    private _fuseSidebarService: FuseSidebarService,
+    private _fuseConfigService: FuseConfigService
   ) {
-    /**
-     * Widget 5
-     */
     this.widget1 = {
       legend: false,
       explodeSlices: false,
@@ -104,6 +95,7 @@ export class DashboardPageComponent implements OnInit {
         console.log(ev);
       }
     };
+
     this.widget5 = {
       currentRange: 'TW',
       xAxis: false,
@@ -178,6 +170,14 @@ export class DashboardPageComponent implements OnInit {
     setInterval(() => {
       this.dateNow = Date.now();
     }, 1000);
+
+    this._fuseConfigService.config = {
+      layout: {
+        toolbar: {
+          hidden: true
+        }
+      }
+    };
   }
 
   // -----------------------------------------------------------------------------------------------------
