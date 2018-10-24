@@ -1,21 +1,12 @@
+import { VisualisationModel } from './../../allModels/visualisation-model';
 import { Component, ViewEncapsulation, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 
-import { FuseTranslationLoaderService } from '@fuse/services/translation-loader.service';
-import * as shape from 'd3-shape';
 import { fuseAnimations } from '@fuse/animations/index';
 import { FuseConfigService } from '@fuse/services/config.service';
-
-export interface UserData {
-  id: string;
-  name: string;
-  progress: string;
-  color: string;
-}
-export interface Food {
-  value: string;
-  viewValue: string;
-}
+import { Food, UserData } from 'app/allModels/visualisation-model';
+import { VisualisationService } from 'app/allServices/visualisation.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'sample',
@@ -25,27 +16,28 @@ export interface Food {
   animations: fuseAnimations
 })
 export class SampleComponent implements OnInit {
-
   foods: Food[] = [
-    {value: 'All-0', viewValue: 'All'},
-    {value: 'Barrier-1', viewValue: 'Barrier'},
-    {value: 'Taken-2', viewValue: 'Taken'}
+    { value: 'All-0', viewValue: 'All' },
+    { value: 'Barrier-1', viewValue: 'Barrier' },
+    { value: 'Taken-2', viewValue: 'Taken' }
   ];
-
+  visualisationData: VisualisationModel[] = [];
   displayedColumns: string[] = ['id', 'name', 'progress', 'color'];
-  dataSource: MatTableDataSource<UserData>;
+  dataSource: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
   @ViewChild(MatSort)
   sort: MatSort;
 
-  constructor(private _fuseConfigService: FuseConfigService) {
+  constructor(
+    private _fuseConfigService: FuseConfigService,
+    private visualisationService: VisualisationService
+  ) {
     // Create 100 users
     const users = Array.from({ length: 100 }, (_, k) => createNewUser(k + 1));
 
     // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
 
     this._fuseConfigService.config = {
       layout: {
@@ -55,9 +47,24 @@ export class SampleComponent implements OnInit {
       }
     };
   }
+
+  getVisualisationData(): void {
+    // this.visualisationData$ = this.visualisationService.getVisualisationData();
+    this.visualisationService
+      .getVisualisationData()
+      .subscribe((data: VisualisationModel[]) => {
+        console.log(data);
+        this.visualisationData = data;
+      });
+  }
+
   // tslint:disable-next-line:typedef
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
+    this.getVisualisationData();
+    this.dataSource = new MatTableDataSource(this.visualisationData);
+    while (this.visualisationData.length !== 0) {
+      this.dataSource.paginator = this.paginator;
+    }
     this.dataSource.sort = this.sort;
   }
 
@@ -88,11 +95,27 @@ const COLORS: string[] = [
   'black',
   'gray'
 ];
-const NAMES: string[] = ['H91', 'H92', 'H93', 'H94', 'H95', 'H96',
-  'H97', 'H98', 'H99', 'H91', 'H91', 'H92',
-  'H94', 'H96', 'H92', 'H95', 'H96', 'H97', 'H92'];
-
-
+const NAMES: string[] = [
+  'H91',
+  'H92',
+  'H93',
+  'H94',
+  'H95',
+  'H96',
+  'H97',
+  'H98',
+  'H99',
+  'H91',
+  'H91',
+  'H92',
+  'H94',
+  'H96',
+  'H92',
+  'H95',
+  'H96',
+  'H97',
+  'H92'
+];
 
 function createNewUser(id: number): UserData {
   const name =

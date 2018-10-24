@@ -1,334 +1,99 @@
 <div id="sample" class="page-layout simple right-sidebar" fxLayout="row">
-
-
-
-    <!-- CENTER -->
     <div class="center" fusePerfectScrollbar>
-
-        <!-- HEADER -->
         <div class="header primary-50 p-24" fxLayout="row" fxLayoutAlign="start center" fxLayout.gt-sm="row"
             fxLayoutAlign.gt-sm="space-between end" style="background-color:white !important;height: 100px !important;min-height: 100px !important; margin-bottom: -30px;">
-        
             <mat-form-field class="w-100-p" style="max-width:450px;font-size: 18px; margin-bottom: -10px;">
-                <input matInput name="Search" placeholder="Search here..." >
+                <input matInput name="Search" placeholder="Search here...">
             </mat-form-field>
             <mat-form-field style="max-width:150px;margin-bottom: -8px;">
-                <mat-select placeholder="Select"  >
-                  <mat-option *ngFor="let food of foods" [value]="food.value">
-                    {{food.viewValue}}
-                  </mat-option>
+                <mat-select placeholder="Select">
+                    <mat-option *ngFor="let food of foods" [value]="food.value">
+                        {{food.viewValue}}
+                    </mat-option>
                 </mat-select>
-                
-              </mat-form-field>
-              <mat-button-toggle-group class="primary"  name="fontStyle"  aria-label="Font Style" value="ON" style="    margin-bottom: 13px !important;" >
-                <mat-button-toggle value="ON" >ON</mat-button-toggle>
+            </mat-form-field>
+            <mat-button-toggle-group class="primary" name="fontStyle" aria-label="Font Style" value="ON" style="    margin-bottom: 13px !important;">
+                <mat-button-toggle value="ON">ON</mat-button-toggle>
                 <mat-button-toggle value="OFF">OFF</mat-button-toggle>
-              </mat-button-toggle-group>
-            <!-- <mat-radio-group >
-                    <mat-radio-button value="1">All. </mat-radio-button><br>
-                    <mat-radio-button value="2">Barrier. </mat-radio-button><br>
-                    <mat-radio-button value="3" style="margin-right:25px;">Taken. </mat-radio-button>
-                    <mat-button-toggle-group name="fontStyle" aria-label="Font Style" style="margin-right:40px;float: right;margin-top: -30px;">
-                            <mat-button-toggle value="ON" class="active">ON</mat-button-toggle>
-                            <mat-button-toggle value="OFF">OFF</mat-button-toggle>
-                          </mat-button-toggle-group>
-                  </mat-radio-group> -->
-
+            </mat-button-toggle-group>
         </div>
-
-        <!-- <div fxLayout="row" fxLayoutAlign="space-between start">
-
-                <span class="mat-display-1 mb-0 welcome-message"
-                      [@animate]="{value:'*',params:{x:'50px'}}">Welcome back, John!
-                </span>
-
-                <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md
-                        (click)="toggleSidebar('project-dashboard-right-sidebar-1')">
-                    <mat-icon>menu</mat-icon>
-                </button>
-            </div>
-
-            <div fxLayout="row">
-
-                <div class="selected-project">{{selectedProject.name}}</div>
-
-                <button mat-icon-button class="project-selector" [matMenuTriggerFor]="projectsMenu"
-                        aria-label="Select project">
-                    <mat-icon>more_horiz</mat-icon>
-                </button>
-
-                <mat-menu #projectsMenu="matMenu">
-                    <button mat-menu-item *ngFor="let project of projects" (click)="selectedProject = project">
-                        <span>{{project.name}}</span>
-                    </button>
-                </mat-menu>
-            </div> -->
-
-        <!-- / HEADER -->
-
-        <!-- CONTENT -->
         <div class="content">
-            <!-- <div class="content"> -->
-            <!-- CONTENT -->
-            <!-- <div class="content-card"> -->
-            <!-- <fuse-search-bar (input)="search($event)"></fuse-search-bar> -->
             <mat-tab-group>
                 <mat-tab label="Tile view">
                     <div class="tab-content p-24">
-                        <!-- PUT YOUR TAB CONTENT HERE -->
-                        
-                            <div id="cards" class="page-layout simple fullwidth">
-                                <div class="content">
-                                    <div class="cards">
-                                        <div class="card">
-                                            <div class="card-preview">
-
-                                                <div class="fuse-card">
-
-                                                    <div class="p-16" fxLayout="row" fxLayoutAlign="space-between start">
-
-                                                        <div class="pr-16">
-                                                            <div class="h1">H91  <b style="color:red;">OFF </b></div>
-                                                            <br>
-                                                            <br>
-                                                            <br>
-                                                            <div class="h4 secondary-text">Today: <b>0 Hrs </b>  </div>
-                                                            <div class="h4 secondary-text">Yesterday: <b>0 Hrs </b></div>
-                                                            <div class="h4 secondary-text">D.B.Yesterday: <b>0 Hrs </b></div>
-                                                        </div>
-
-                                                        <div class="w-120 h-120">
-                                                            <img src="../../../assets/images/tubs-off.png">
-                                                        </div>
-
+                        <div id="cards" class="page-layout simple fullwidth">
+                            <div class="content">
+                                <div class="cards">
+                                    <div class="card" *ngFor="let item of visualisationData">
+                                        <div class="card-preview">
+                                            <div class="fuse-card">
+                                                <div class="p-16" fxLayout="row" fxLayoutAlign="space-between start">
+                                                    <div class="pr-16">
+                                                        <div class="h1">{{item.deviceId}} -
+                                                            <b [ngStyle]="{'color':item.todayStatus === 'On' ? 'green' : 'red' }">{{item.todayStatus}}</b></div>
+                                                        <br>
+                                                        <br>
+                                                        <br>
+                                                        <div class="h5 secondary-text">Today: <b>{{item.todayDuration/60|number
+                                                                : '1.2-2'}}
+                                                                hrs</b> </div>
+                                                        <div class="h5 secondary-text">Yesterday: <b>{{item.yesterdayDuration/60|number
+                                                                : '1.2-2'}}
+                                                                hrs </b></div>
+                                                        <div class="h5 secondary-text">D.B.Yesterday: <b>{{item.dbYesterdayDuration/60
+                                                                |number : '1.2-2'}}
+                                                                hrs </b></div>
                                                     </div>
-
-                                                    <!-- <div class="p-8 pt-0" fxLayout="row" fxLayoutAlign="start center">
+                                                    <div class="w-120 h-120">
+                                                        <img src="../../../assets/images/tubs-off.png">
+                                                    </div>
+                                                </div>
+                                                <!-- <div class="p-8 pt-0" fxLayout="row" fxLayoutAlign="start center">
                                                         <button mat-button color="accent">Maintenance</button>
                                                         <button mat-button color="accent">Treatment</button>
                                                     </div> -->
-
-                                                </div>
-
                                             </div>
                                         </div>
-                                        <div class="card">
-                                            <div class="card-preview">
-
-                                                <div class="fuse-card">
-
-                                                    <div class="p-16" fxLayout="row" fxLayoutAlign="space-between start">
-
-                                                        <div class="pr-16">
-                                                                <div class="h1">H92 <b style="color:green;">ON </b></div>
-                                                                <br>
-                                                            <br>
-                                                            <br>
-                                                                <div class="h4 secondary-text">Today: <b>0 Hrs </b>  </div>
-                                                                <div class="h4 secondary-text">Yesterday: <b>0 Hrs </b></div>
-                                                                <div class="h4 secondary-text">D.B.Yesterday: <b>0 Hrs </b></div>
-                                                             </div>
-
-                                                        <div class="w-120 h-120">
-                                                            <img src="../../../assets/images/tubs-on.png">
-                                                        </div>
-
-                                                    </div>
-
-                                                    <!-- <div class="p-8 pt-0" fxLayout="row" fxLayoutAlign="start center">
-                                                        <button mat-button color="accent">Maintenance</button>
-                                                        <button mat-button color="accent">Treatment</button>
-                                                    </div> -->
-
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <div class="card">
-                                                <div class="card-preview">
-    
-                                                    <div class="fuse-card">
-    
-                                                        <div class="p-16" fxLayout="row" fxLayoutAlign="space-between start">
-    
-                                                            <div class="pr-16">
-                                                                <div class="h1">H93 <b style="color:red;">OFF </b></div>
-                                                                <br>
-                                                            <br>
-                                                            <br>
-                                                                <div class="h4 secondary-text">Today: <b>0 Hrs </b>  </div>
-                                                                <div class="h4 secondary-text">Yesterday: <b>0 Hrs </b></div>
-                                                                <div class="h4 secondary-text">D.B.Yesterday: <b>0 Hrs </b></div>
-                                                            </div>
-    
-                                                            <div class="w-120 h-120">
-                                                                <img src="../../../assets/images/tubs-off.png">
-                                                            </div>
-    
-                                                        </div>
-    
-                                                        <!-- <div class="p-8 pt-0" fxLayout="row" fxLayoutAlign="start center">
-                                                            <button mat-button color="accent">Maintenance</button>
-                                                            <button mat-button color="accent">Treatment</button>
-                                                        </div>
-     -->
-                                                    </div>
-    
-                                                </div>
-                                            </div>
-                                        <div class="card">
-                                            <div class="card-preview">
-
-                                                <div class="fuse-card">
-
-                                                    <div class="p-16" fxLayout="row" fxLayoutAlign="space-between start">
-
-                                                        <div class="pr-16">
-                                                                <div class="h1">H94 <b style="color:green;">ON </b> </div>
-                                                                <br>
-                                                            <br>
-                                                            <br>
-                                                                <div class="h4 secondary-text">Today: <b>0 Hrs </b>  </div>
-                                                                <div class="h4 secondary-text">Yesterday: <b>0 Hrs </b></div>
-                                                                <div class="h4 secondary-text">D.B.Yesterday: <b>0 Hrs </b></div>
-                                                        </div>
-
-                                                        <div class="w-120 h-120">
-                                                            <img src="../../../assets/images/tubs-on.png">
-                                                        </div>
-
-                                                    </div>
-
-                                                    <!-- <div class="p-8 pt-0" fxLayout="row" fxLayoutAlign="start center">
-                                                        <button mat-button color="accent">Maintenance</button>
-                                                        <button mat-button color="accent">Treatment</button>
-                                                    </div> -->
-
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                         <div class="card">
-                                            <div class="card-preview">
-
-                                                <div class="fuse-card">
-
-                                                    <div class="p-16" fxLayout="row" fxLayoutAlign="space-between start">
-
-                                                        <div class="pr-16">
-                                                            <div class="h1">H95 <b style="color:red;">OFF </b></div>
-                                                            <br>
-                                                            <br>
-                                                            <br>
-                                                            <div class="h4 secondary-text">Today: <b>0 Hrs </b>  </div>
-                                                            <div class="h4 secondary-text">Yesterday: <b>0 Hrs </b></div>
-                                                            <div class="h4 secondary-text">D.B.Yesterday: <b>0 Hrs </b></div>
-                                                        </div>
-
-                                                        <div class="w-120 h-120">
-                                                            <img src="../../../assets/images/tubs-off.png">
-                                                        </div>
-
-                                                    </div>
-
-                                                    <!-- <div class="p-8 pt-0" fxLayout="row" fxLayoutAlign="start center">
-                                                        <button mat-button color="accent">Maintenance</button>
-                                                        <button mat-button color="accent">Treatment</button>
-                                                    </div> -->
-
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <div class="card">
-                                                <div class="card-preview">
-    
-                                                    <div class="fuse-card">
-    
-                                                        <div class="p-16" fxLayout="row" fxLayoutAlign="space-between start">
-    
-                                                            <div class="pr-16">
-                                                                <div class="h1">H96 <b style="color:red;">OFF </b></div>
-                                                                <br>
-                                                            <br>
-                                                            <br>
-                                                                <div class="h4 secondary-text">Today: <b>0 Hrs </b>  </div>
-                                                                <div class="h4 secondary-text">Yesterday: <b>0 Hrs </b></div>
-                                                                <div class="h4 secondary-text">D.B.Yesterday: <b>0 Hrs </b></div>
-                                                            </div>
-    
-                                                            <div class="w-120 h-120">
-                                                                <img src="../../../assets/images/tubs-off.png">
-                                                            </div>
-    
-                                                        </div>
-    
-                                                        <!-- <div class="p-8 pt-0" fxLayout="row" fxLayoutAlign="start center">
-                                                            <button mat-button color="accent">Maintenance</button>
-                                                            <button mat-button color="accent">Treatment</button>
-                                                        </div> -->
-    
-                                                    </div>
-    
-                                                </div>
-                                            </div>
-
                                     </div>
                                 </div>
                             </div>
-                            <mat-paginator [pageSizeOptions]="[6, 10, 25, 100]"></mat-paginator>
-                        
-                        <!-- / PUT YOUR TAB CONTENT HERE -->
+                        </div>
+                        <mat-paginator [pageSizeOptions]="[6, 10, 25, 100]"></mat-paginator>
                     </div>
                 </mat-tab>
+
                 <mat-tab label="Table view ">
                     <div class="tab-content p-24">
-                        <!-- PUT YOUR TAB CONTENT HERE -->
                         <mat-form-field>
                             <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
                         </mat-form-field>
-
                         <div class="content-card">
                             <table class="prodproducts-table" mat-table [dataSource]="dataSource" matSort>
-
-                                <!-- ID Column -->
                                 <ng-container matColumnDef="id">
                                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Sl.No </th>
-                                    <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+                                    <td mat-cell *matCellDef="let row"> {{row.deviceId}} </td>
                                 </ng-container>
-
-                                <!-- Progress Column -->
                                 <ng-container matColumnDef="progress">
                                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Progress </th>
-                                    <td mat-cell *matCellDef="let row"> {{row.progress}}% </td>
+                                    <td mat-cell *matCellDef="let row"> {{row.todayStatus}}% </td>
                                 </ng-container>
-
-                                <!-- Name Column -->
                                 <ng-container matColumnDef="name">
                                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Device ID </th>
-                                    <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+                                    <td mat-cell *matCellDef="let row"> {{row.todayDuration}} </td>
                                 </ng-container>
-
-                                <!-- Color Column -->
                                 <ng-container matColumnDef="color">
                                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Started ON </th>
-                                    <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.color}} </td>
+                                    <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.yesterdayDuration}} </td>
                                 </ng-container>
-
                                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                                 <tr mat-row *matRowDef="let row; columns: displayedColumns;">
                                 </tr>
                             </table>
-
                             <mat-paginator [pageSizeOptions]="[6, 10, 25, 100]"></mat-paginator>
                         </div>
-                        <!-- / PUT YOUR TAB CONTENT HERE -->
                     </div>
                 </mat-tab>
             </mat-tab-group>
-            <!-- </div> -->
-            <!-- / CONTENT -->
-            <!-- </div> -->
         </div>
     </div>
 </div>

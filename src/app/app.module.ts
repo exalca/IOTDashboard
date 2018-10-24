@@ -48,23 +48,18 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
-
     TranslateModule.forRoot(),
-
     // Material moment date module
     MatMomentDateModule,
-
     // Material
     MatButtonModule,
     MatIconModule,
-
     // Fuse modules
     FuseModule.forRoot(fuseConfig),
     FuseProgressBarModule,
     FuseSharedModule,
     FuseSidebarModule,
     FuseThemeOptionsModule,
-
     // App modules
     LayoutModule,
     SampleModule

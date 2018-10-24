@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-
+import { HttpClientModule } from '@angular/common/http';
 import { FuseSharedModule } from '@fuse/shared.module';
 import {
   MatFormFieldModule,
@@ -50,6 +50,7 @@ import {
 } from '@fuse/components';
 
 import { SampleComponent } from './sample.component';
+import { VisualisationService } from 'app/allServices/visualisation.service';
 
 const routes = [
   {
@@ -62,12 +63,11 @@ const routes = [
   declarations: [SampleComponent],
   entryComponents: [SampleComponent],
   bootstrap: [SampleComponent],
-  providers: [],
+  providers: [VisualisationService],
   imports: [
     RouterModule.forChild(routes),
-
+    HttpClientModule,
     TranslateModule,
-
     MatFormFieldModule,
     MatAutocompleteModule,
     MatBadgeModule,
