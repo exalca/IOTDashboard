@@ -12,6 +12,10 @@ export interface UserData {
   progress: string;
   color: string;
 }
+export interface Food {
+  value: string;
+  viewValue: string;
+}
 
 @Component({
   selector: 'sample',
@@ -21,6 +25,13 @@ export interface UserData {
   animations: fuseAnimations
 })
 export class SampleComponent implements OnInit {
+
+  foods: Food[] = [
+    {value: 'All-0', viewValue: 'All'},
+    {value: 'Barrier-1', viewValue: 'Barrier'},
+    {value: 'Taken-2', viewValue: 'Taken'}
+  ];
+
   displayedColumns: string[] = ['id', 'name', 'progress', 'color'];
   dataSource: MatTableDataSource<UserData>;
 
@@ -77,27 +88,11 @@ const COLORS: string[] = [
   'black',
   'gray'
 ];
-const NAMES: string[] = [
-  'Maia',
-  'Asher',
-  'Olivia',
-  'Atticus',
-  'Amelia',
-  'Jack',
-  'Charlotte',
-  'Theodore',
-  'Isla',
-  'Oliver',
-  'Isabella',
-  'Jasper',
-  'Cora',
-  'Levi',
-  'Violet',
-  'Arthur',
-  'Mia',
-  'Thomas',
-  'Elizabeth'
-];
+const NAMES: string[] = ['H91', 'H92', 'H93', 'H94', 'H95', 'H96',
+  'H97', 'H98', 'H99', 'H91', 'H91', 'H92',
+  'H94', 'H96', 'H92', 'H95', 'H96', 'H97', 'H92'];
+
+
 
 function createNewUser(id: number): UserData {
   const name =
