@@ -5,13 +5,6 @@ export class VisualisationModel {
   yesterdayDuration: string;
   DBYesterdayDuration: string;
 }
-
-export interface UserData {
-  id: string;
-  name: string;
-  progress: string;
-  color: string;
-}
 export interface Food {
   value: string;
   viewValue: string;

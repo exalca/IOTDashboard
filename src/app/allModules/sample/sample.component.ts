@@ -4,9 +4,8 @@ import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 
 import { fuseAnimations } from '@fuse/animations/index';
 import { FuseConfigService } from '@fuse/services/config.service';
-import { Food, UserData } from 'app/allModels/visualisation-model';
 import { VisualisationService } from 'app/allServices/visualisation.service';
-import { Observable } from 'rxjs';
+import { Food } from 'app/allModels/visualisation-model';
 
 @Component({
   selector: 'sample',
@@ -22,7 +21,13 @@ export class SampleComponent implements OnInit {
     { value: 'Taken-2', viewValue: 'Taken' }
   ];
   visualisationData: VisualisationModel[] = [];
-  displayedColumns: string[] = ['id', 'name', 'progress', 'color'];
+  displayedColumns: string[] = [
+    'device',
+    'todayStatus',
+    'todayDuration',
+    'yesterdayDuration',
+    'DBYesterdayDuration'
+  ];
   dataSource: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator)
@@ -35,7 +40,7 @@ export class SampleComponent implements OnInit {
     private visualisationService: VisualisationService
   ) {
     // Create 100 users
-    const users = Array.from({ length: 100 }, (_, k) => createNewUser(k + 1));
+    // const users = Array.from({ length: 100 }, (_, k) => createNewUser(k + 1));
 
     // Assign the data to the data source for the table to render
 
@@ -55,17 +60,15 @@ export class SampleComponent implements OnInit {
       .subscribe((data: VisualisationModel[]) => {
         console.log(data);
         this.visualisationData = data;
+        this.dataSource = new MatTableDataSource(this.visualisationData);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
       });
   }
 
   // tslint:disable-next-line:typedef
   ngOnInit() {
     this.getVisualisationData();
-    this.dataSource = new MatTableDataSource(this.visualisationData);
-    while (this.visualisationData.length !== 0) {
-      this.dataSource.paginator = this.paginator;
-    }
-    this.dataSource.sort = this.sort;
   }
 
   // tslint:disable-next-line:typedef
@@ -76,58 +79,4 @@ export class SampleComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-}
-
-const COLORS: string[] = [
-  'maroon',
-  'red',
-  'orange',
-  'yellow',
-  'olive',
-  'green',
-  'purple',
-  'fuchsia',
-  'lime',
-  'teal',
-  'aqua',
-  'blue',
-  'navy',
-  'black',
-  'gray'
-];
-const NAMES: string[] = [
-  'H91',
-  'H92',
-  'H93',
-  'H94',
-  'H95',
-  'H96',
-  'H97',
-  'H98',
-  'H99',
-  'H91',
-  'H91',
-  'H92',
-  'H94',
-  'H96',
-  'H92',
-  'H95',
-  'H96',
-  'H97',
-  'H92'
-];
-
-function createNewUser(id: number): UserData {
-  const name =
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))] +
-    ' ' +
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) +
-    '.';
-
-  return {
-    id: id.toString(),
-    name: name,
-    progress: Math.round(Math.random() * 100).toString(),
-    color: COLORS[Math.round(Math.random() * (COLORS.length - 1))]
-  };
 }
