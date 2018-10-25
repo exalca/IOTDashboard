@@ -169,4 +169,5 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 }
 
-export const endpoint = 'http://localhost:54823/api/';
+export const endpoint = 'http://192.168.0.25:4200/v1/api/';
+// export const endpoint = 'http://localhost:54823/api/';
