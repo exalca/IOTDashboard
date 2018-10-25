@@ -43,13 +43,14 @@ export class DashboardPageComponent implements OnInit {
       doughnut: false,
       gradient: false,
       scheme: {
-        domain: ['#36a565', '#ec5588']
+        domain: ['#79d1d9', '#dadada']
       },
       onSelect: ev => {
         console.log(ev);
       }
     };
-
+    // dadada-grey
+    // 79d1d9-blue
     this.widget2 = {
       legend: false,
       explodeSlices: false,
@@ -57,7 +58,7 @@ export class DashboardPageComponent implements OnInit {
       doughnut: false,
       gradient: false,
       scheme: {
-        domain: ['#36a565', '#ec5588']
+        domain: ['#79d1d9', '#dadada']
       },
       onSelect: ev => {
         console.log(ev);
@@ -71,7 +72,7 @@ export class DashboardPageComponent implements OnInit {
       doughnut: false,
       gradient: false,
       scheme: {
-        domain: ['#36a565', '#ec5588']
+        domain: ['#79d1d9', '#dadada']
       },
       onSelect: ev => {
         console.log(ev);
@@ -89,7 +90,7 @@ export class DashboardPageComponent implements OnInit {
       showYAxisLabel: false,
       yAxisLabel: 'Total active hours',
       scheme: {
-        domain: ['#36a565', '#ec5588']
+        domain: ['#79d1d9', '#dadada']
       },
       onSelect: ev => {
         console.log(ev);
@@ -107,7 +108,7 @@ export class DashboardPageComponent implements OnInit {
       showYAxisLabel: false,
       yAxisLabel: 'Total active hours',
       scheme: {
-        domain: ['#36a565', '#ec5588']
+        domain: ['#79d1d9', '#dadada']
       },
       onSelect: ev => {
         console.log(ev);

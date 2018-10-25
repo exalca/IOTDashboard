@@ -4,7 +4,7 @@
       <div class="widget-group p-12" fxLayout="row wrap" fxFlex="100" *fuseIfOnDom [@animateStagger]="{value:'50'}">
 
         <div class="widget" fxFlex="100" fxFlex.gt-sm="25">
-          <div class="fuse-card auto-width mb-16 dashboardCard1" [ngClass.gt-sm]="'mb-0 mr-20'">
+          <div class="fuse-card auto-width mb-16" [ngClass.gt-sm]="'mb-0 mr-20'">
             <div class="p-16 pb-0" fxLayout="row wrap"  fxLayoutAlign="start end">
               <div class="pr-16">
                 <div class="h4">On Job</div>
@@ -48,7 +48,7 @@
         </div>
 
         <div class="widget" fxFlex="100" fxFlex.gt-sm="25">
-          <div class="fuse-card auto-width mb-16 dashboardCard2" [ngClass.gt-sm]="'mb-0 mr-20'">
+          <div class="fuse-card auto-width mb-16" [ngClass.gt-sm]="'mb-0 mr-20'">
             <div class="p-16 pb-0" fxLayout="row wrap" fxLayoutAlign="start end">
               <div class="pr-16">
                 <div class="h4">OFF Status</div>
@@ -76,7 +76,7 @@
         </div>
 
         <div class="widget" fxFlex="100" fxFlex.gt-sm="25">
-          <div class="fuse-card auto-width mb-16 dashboardCard3" [ngClass.gt-sm]="'mb-0 mr-20'">
+          <div class="fuse-card auto-width mb-16" [ngClass.gt-sm]="'mb-0 mr-20'">
             <div class="p-16 pb-0" fxLayout="row wrap" fxLayoutAlign="start end">
               <div class="pr-16">
                 <div class="h4">Treatment</div>
@@ -104,7 +104,7 @@
         </div>
 
         <div class="widget" fxFlex="100" fxFlex.gt-sm="25">
-          <div class="fuse-card auto-width mb-16 dashboardCard4" [ngClass.gt-sm]="'mb-0 mr-10'">
+          <div class="fuse-card auto-width mb-16" [ngClass.gt-sm]="'mb-0 mr-10'">
             <div class="p-16 pb-0" fxLayout="row wrap" fxLayoutAlign="start end">
               <div class="pr-16">
                 <div class="h4">Exceptions</div>
@@ -122,7 +122,7 @@
               </div>
             </div>
             <div class="h-96 w-100-p">
-              <canvas baseChart [datasets]="widgets.widget6.datasets" [labels]="widgets.widget6.labels" [colors]="widgets.widget6.colors"
+              <canvas baseChart [datasets]="widgets.widget6.datasets" [labels]="widgets.widget6.labels" 
                 [options]="widgets.widget6.options" [chartType]="widgets.widget6.chartType">
               </canvas>
             </div>
