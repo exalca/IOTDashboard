@@ -47,7 +47,7 @@ export class SampleComponent implements OnInit {
     this._fuseConfigService.config = {
       layout: {
         toolbar: {
-          hidden: true
+          hidden: false
         }
       }
     };
