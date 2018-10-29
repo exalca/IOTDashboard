@@ -175,7 +175,7 @@ export class DashboardPageComponent implements OnInit {
     this._fuseConfigService.config = {
       layout: {
         toolbar: {
-          hidden: true
+          hidden: false
         }
       }
     };
